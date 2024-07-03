@@ -1,12 +1,22 @@
 import { Component } from '@angular/core';
+import { UpperCasePipe } from '@angular/common';
+import { Hero } from '../hero';
+import { FormsModule } from '@angular/forms';
+import { HEROES } from '../mock-heroes';
+import { NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-heroes',
   standalone: true,
-  imports: [],
+  imports: [UpperCasePipe, FormsModule, NgFor, NgIf],
   templateUrl: './heroes.component.html',
   styleUrl: './heroes.component.scss',
 })
 export class HeroesComponent {
-  hero = 'Windstorm';
+  heroes = HEROES;
+  
+  selectedHero?: Hero;
+  onSelect(hero: Hero): void {
+    this.selectedHero = hero;
+  }
 }
